@@ -21,9 +21,15 @@ func Edit(id int, title string) error{
 
 	data,err := os.ReadFile("tasks.json")
 
-	if err == nil {
-        json.Unmarshal(data, &tasks)
-    }
+	if err != nil {
+		return err
+	}
+
+    if err:= json.Unmarshal(data, &tasks); err != nil{
+		return err
+	}
+
+
 
 	tasks[id-1].Title = title
 
@@ -40,14 +46,18 @@ func Edit(id int, title string) error{
 	return nil
 }
 
-func Toggle(id int) error{
+func Complete(id int) error{
 	var tasks []Todo
 
 	data,err := os.ReadFile("tasks.json")
 
-	if err == nil {
-        json.Unmarshal(data, &tasks)
+	if err != nil {
+		return err
     }
+
+	if err:= json.Unmarshal(data, &tasks); err != nil{
+		return err
+	}
 
 	tasks[id-1].Status = "done"
 	tasks[id-1].CompletedAt = time.Now()
@@ -71,7 +81,9 @@ func Read() ([]Todo, error){
 
 	data, err := os.ReadFile(filename)
 
-	json.Unmarshal(data,&tasks)
+	if err:= json.Unmarshal(data, &tasks); err != nil{
+		return nil,err
+	}
 
 	return tasks, err
 }
@@ -81,9 +93,13 @@ func Write(task Todo) error{
 
 	data,err := os.ReadFile("tasks.json")
 
-	if err == nil {
-        json.Unmarshal(data, &tasks)
+	if err != nil {
+		return err
     }
+
+	if err:= json.Unmarshal(data, &tasks); err != nil{
+		return err
+	}
 
 	task.Number = len(tasks) + 1
 

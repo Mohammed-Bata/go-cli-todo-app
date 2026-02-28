@@ -16,7 +16,7 @@ func main(){
 
 	listPtr := flag.Bool("list",false,"show the tasks")
 	addPtr := flag.String("add","default","add new task")
-	togglePtr := flag.Int("toggle",0,"compelete task")
+	completePtr := flag.Int("complete",0,"compelete task")
 	editPtr := flag.String("edit","default","edit task")
 
 	flag.Parse()
@@ -56,12 +56,18 @@ func main(){
 
 		err := Write(tk)
 		if err != nil {
-			fmt.Printf("there is error",err)
+			fmt.Printf("there is error: %v",err)
 		}
 	}
 
-	if *togglePtr != 0 {
-		Toggle(*togglePtr)
+	if *completePtr != 0 {
+		err := Complete(*completePtr)
+
+		if err != nil {
+			fmt.Printf("there is error: %v",err)
+			return
+		}
+		fmt.Println("Complete done")
 	}
 
 	if *editPtr != "default" {
@@ -73,7 +79,13 @@ func main(){
 			fmt.Println("Error: First part is not a number")
 		}
 
-		Edit(num,parts[1])
+		editerror := Edit(num,parts[1])
+		if editerror != nil {
+			fmt.Printf("there is error: %v",editerror)
+			return
+		}
+
+		fmt.Println("Edit Done")
 	}
 
 }
