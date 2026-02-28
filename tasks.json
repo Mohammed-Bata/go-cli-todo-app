@@ -1,0 +1,23 @@
+[
+  {
+    "number": 1,
+    "title": "First Task",
+    "status": "Pending",
+    "createdAt": "2026-02-28T05:20:18.145478245+02:00",
+    "completedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "number": 2,
+    "title": "Second Task",
+    "status": "Pending",
+    "createdAt": "2026-02-28T05:20:32.159065544+02:00",
+    "completedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "number": 3,
+    "title": "Third Task",
+    "status": "done",
+    "createdAt": "2026-02-28T05:21:11.141396026+02:00",
+    "completedAt": "2026-02-28T05:24:28.119564914+02:00"
+  }
+]
