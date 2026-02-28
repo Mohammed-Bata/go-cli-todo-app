@@ -58,6 +58,8 @@ func main(){
 		if err != nil {
 			fmt.Printf("there is error: %v",err)
 		}
+
+		fmt.Println("Task Added")
 	}
 
 	if *completePtr != 0 {
