@@ -19,7 +19,7 @@ type Todo struct{
 func Edit(id int, title string) error{
 	var tasks []Todo
 
-	data,err := os.ReadFile("tasks.json")
+	data,err := os.ReadFile(filename)
 
 	if err != nil {
 		return err
@@ -49,7 +49,7 @@ func Edit(id int, title string) error{
 func Complete(id int) error{
 	var tasks []Todo
 
-	data,err := os.ReadFile("tasks.json")
+	data,err := os.ReadFile(filename)
 
 	if err != nil {
 		return err
@@ -81,6 +81,10 @@ func Read() ([]Todo, error){
 
 	data, err := os.ReadFile(filename)
 
+	if err != nil {
+		return nil,err
+	}
+
 	if err:= json.Unmarshal(data, &tasks); err != nil{
 		return nil,err
 	}
@@ -91,7 +95,7 @@ func Read() ([]Todo, error){
 func Write(task Todo) error{
 	var tasks []Todo
 
-	data,err := os.ReadFile("tasks.json")
+	data,err := os.ReadFile(filename)
 
 	if err != nil {
 		return err
